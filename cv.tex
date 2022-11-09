@@ -3,7 +3,7 @@
 \usepackage{lipsum}
 \usepackage{fontawesome}
 
-\setuplengths[0.5cm]{7cm}{1.8cm}{2cm}
+\setuplengths[0.5cm]{7cm}{1.8cm}
 
 \begin{document}
 
@@ -16,56 +16,54 @@
 	\cvpicture{photo.jpg}
 
 	\begin{cvcontactbox}
-		\cvcontactinfo[\faMapMarker]{Lusiana, Vicenza, Italy}
-		\cvcontactinfo[\faPhone]{+39 3481272640}
-		\cvcontactinfo[\faInbox]{\href{mailto:matteo.dep97@gmail.com}{matteo.dep97@gmail.com}}
-		\cvcontactinfo[\faLinkedin]{\href{https://www.linkedin.com/in/matteo-de-pellegrin/}{Matteo De Pellegrin}}
-		\cvcontactinfo[\faGithub]{\href{https://github.com/MatteoDep}{MatteoDep}}
+		\cvcontactinfo{\faPhone}{+39 3481272640}
+		\cvcontactinfo[mailto:matteo.dep97@gmail.com]{\faInbox}{matteo.dep97@gmail.com}
+		\cvcontactinfo{\faMapMarker}{Lusiana, Vicenza, Italy}
+		\cvcontactinfo[https://www.linkedin.com/in/matteo-de-pellegrin/]{\faLinkedin}{Matteo De Pellegrin}
+		\cvcontactinfo[https://github.com/MatteoDep]{\faGithub}{MatteoDep}
 	\end{cvcontactbox}
 
-	\sidesection{About me}
+	\sidesection{About me}{
+		I love physics, programming and nature.
+		I get excited by difficult problems and strive for finding elegant, simple and creative solutions.
+		I'm looking for an opportunity to contribute on cutting edge innovations while learning new skills and expanding my toolset.\\
+		\cvlist{Some of my interests}{Computational Science, Modeling of complex systems, Renewable Energy, AI, IoT, Robotics, BlockChain Technology and Open Source Software.}
+	}
 
-	I love physics, programming and nature.
-	I get triggered by difficult problems and strive for finding elegant, simple and creative solutions.
-	I'm looking for an opportunity to contribute on cutting edge innovations while learning new skills and expanding my toolset.\\
-	\textbf{Some of my interests}: Computational Science, Modeling of complex systems, Renewable Energy, AI, IoT, Robotics,\\
-	BlockChain Technology and Open Source Software.\\
+	\sidesection{Skills}{
+		\cvlist{Programming}{C, C++, Python, Shell scripting, Matlab. Eager to learn new ones.}
+		\cvlist{Markup}{\LaTeX, Markdown, html and css.}
+		\cvlist{Tools}{Git, Gnu/Linux and Unix-like OS, Jira, vim, ssh, Office suite.}
+		\cvlist{Languages}{Italian (mother tongue), English (Main language for 3 years).}
+	}
 
-	\sidesection{Skills}
-
-	\textbf{Programming}: C, C++, Python, Shell\\scripting, Matlab. Eager to learn new ones.\\
-	\textbf{Markup}: \LaTeX, Markdown, html and css.\\
-	\textbf{Tools}: Git, Jira, Gnu/Linux and Unix-like OS, vim, ssh, Office suite.\\
-	\textbf{Languages}: Italian (mother tongue), English (Main language for 3 years).\\
-
-	\sidesection{Other Activities}
-
-	\textbf{Scouting (2010-2018)}: I practiced team work, leadership, dealing with unforeseen circumstances and getting outside my comfort zone, caring also about introspection and self improvement.\\
-	\textbf{Hobbies}: I enjoy bouldering, rock climbing, hiking, camping and handcrafting. I play guitar and saxophone.\\
+	\sidesection{Other Activities}{
+		\cvlist{Scouting (2010-2018)}{teamwork, leadership, self improvement.}
+		\cvlist{Hobbies}{I enjoy bouldering, rock climbing, hiking, camping and handcrafting. I play guitar and saxophone. I also love automating things in my Linux setup.}
+	}
 
 \end{cvsidebar}
 
 \section{Experience}
 
-\cventry{Jul 2020 -\\Jul 2021}{Software Engineer (Part Time)}{Agri Data innovations}{
+\cventry[part time]{Jul 2020 -\\Jul 2021}{Software Engineer}{Agri Data innovations}{
 	Maintained and developed computer vision and data analysis code (improved the code I worked on my previous internship).\\
 	Trained and Tuned instance segmentation neural network.\\
 	Used the TensorFlow Object Detection API to train and test different models and compare results.\\
 	Worked on refactoring of scripts and libraries.\\
-	Supervised interns.\\
+	Supervised interns.
 }
 
-\cventry{Jan 2020 -\\Jul 2020}{Internship}{Agri Data innovations}{
+\cventry{Jan 2020 -\\Jul 2020}{Computer Vision Intern}{Agri Data innovations}{
 	Built and collaborated on a variety of computer vision and data analysis software.\\
-	Fine-tuned and tested instance segmentation neural network and implemented API to use it for leaves segmentation.\\
-	Used the API for other applications, like tracking leaves growth over time.\\
+	Fine-tuned and tested instance segmentation neural network and implemented an API to use it for leaves segmentation.\\
+	Used the API for other applications, like tracking leaves growth over time.
 }
 
-\cventry{Mar 2019 -\\Aug 2019}{Internship}{Witted s.r.l.}{
+\cventry[part time]{Mar 2019 -\\Aug 2019}{Dynamics Intern}{Witted s.r.l.}{
 	I built a dynamics model in Matlab-Simulink which fits for an underwater robot with any number of thrusters, using all the 6 coupled DOFs and without constraints on the various parameters
 	(e.g. center of mass, center of buoyancy, inertia matrix, etc...).\\
-	I developed and tested a new method for measuring the 3-dimensional center of mass.\\
-	I had the opportunity to improve soft skills like learning how to write a proposal, time management, properly documenting my work, designing of an experiment and how to make effective presentations.\\
+	I developed and tested a method for measuring the 3-dimensional center of mass.\\
 }
 
 \section{Education}
@@ -75,14 +73,12 @@
 	as well as gaining practical knowledge on physics applications in the renewable energy domain and quantum devices.
 	My Master Thesis investigates \textit{Electron Transport in Cable Bacteria}, in particular, I explore the temperature and gate dependence of the conductance that is displayed in these microorganisms.
 	Along the journey I had the opportunity to improve my analysis and critical thinking skills, team working and communication, as well as improving my knowledge of C++ and Python.
-	Supervisor: H.J.S. van der Zant.
+	Supervisor: Herre S.J. van der Zant.
 }
 
 \cventry{Sep 2019 -\\Jan 2020}{Online course}{Coursera}{\href{https://www.coursera.org/specializations/deep-learning}{Deep Learning Specialization}}
 
 \cventry{Sep 2016 -\\Nov 2019}{Bachelor in Physics}{University of Trento}{
-	I learned essential math and theory for physics like calculus, linear algebra, complex analysis, statistics, mechanics, thermodynamics, electromagnetism, quantum mechanics, nuclear physics and computational physics.\\
-	Gained lab experience in electronics and optics.\\
 	\href{https://github.com/MatteoDep/bachelor-thesis}{My Bachelor thesis is titled \textit{Quantum Monte Carlo study of Circular Quantum Dots}}.
 	The project consists in writing a \href{https://github.com/MatteoDep/qdotvmc}{C++ program to calculate ground states and first excited levels of 2D circular quantum dots using a Quantum Variational Monte Carlo method}.
 	Supervisor: Pederiva Francesco.

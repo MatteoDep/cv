@@ -6,7 +6,7 @@
 \ProcessOptions\relax
 \LoadClass{article}
 
-\usepackage[sfdefault,light]{roboto}
+\usepackage[sfdefault]{FiraSans}
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
 \usepackage[absolute,overlay]{textpos}
@@ -14,11 +14,15 @@
 \usetikzlibrary{positioning,math}
 \usepackage{calc}
 \usepackage{array}
+\usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
 
-\definecolor{hlcolor}{HTML}{7726C9}
-\definecolor{sidecolor}{HTML}{A0A3C4}
-\definecolor{textcolor}{HTML}{555555}
+% dracula theme
+\definecolor{hlcolor}{HTML}{62d6e8}
+\definecolor{sidebg}{HTML}{626483}
+\definecolor{sidefg}{HTML}{e9e9f4}
+\definecolor{section}{HTML}{626483}
+\definecolor{workplace}{HTML}{626483}
 
 \setlength{\TPHorizModule}{1cm}
 \setlength{\TPVertModule}{\TPHorizModule}
@@ -26,7 +30,7 @@
 \setlength{\tabcolsep}{0pt}
 
 % mandatory to call this in preamble
-\newcommand{\setuplengths}[4][5mm]{
+\newcommand{\setuplengths}[3][5mm]{
 	\newlength{\padding}
 	\setlength{\padding}{#1}
 	\newlength{\sidewidth}
@@ -45,19 +49,15 @@
 	\newlength{\cventrycontentwidth}
 	\setlength{\cventrycontentwidth}{\mainblock - \cventrydatewidth - \tabcustomsep}
 
-	\newlength{\cvcontacticonwidth}
-	\setlength{\cvcontacticonwidth}{#4}
-	\newlength{\cvcontactcontentwidth}
-	\setlength{\cvcontactcontentwidth}{\sideblock - \cvcontacticonwidth}
-
 	\usepackage[left=\leftmarginnew,top=\padding,right=\padding,bottom=\padding,nohead,nofoot]{geometry}
 }
 
 \newenvironment{cvsidebar}{
 	\begin{tikzpicture}[remember picture, overlay]
-		\fill[fill=sidecolor] (current page.south west) rectangle ++(\sidewidth,\paperheight);
+		\fill[fill=sidebg] (current page.south west) rectangle ++(\sidewidth,\paperheight);
 	\end{tikzpicture}
 	\begin{textblock*}{\sideblock}(\padding, \padding)
+		\color{sidefg}
 }{
 	\end{textblock*}
 }
@@ -79,38 +79,51 @@
 
 \newenvironment{cvcontactbox}{
 	\begin{center}%
-		% \begin{tabular}{>{\raggedleft\arraybackslash}p{\cvcontacticonwidth}p{\cvcontactcontentwidth}}
-		\begin{tabular}{rl}
+		\begin{tabular}{rl}%
 }{
 		\end{tabular}
 	\end{center}
 }
 
-\newcommand{\cvcontactinfo}[2][]{
-	{\Large\color{hlcolor}#1\hspace{5mm}} & {\large\color{textcolor}{#2}} \\%
+\newcommand{\cvcontactinfo}[3][]{ %\cvcontactinfo[url]{icon}{value}
+	\ifstrempty{#1}{
+		{\Large\color{hlcolor}#2\hspace{5mm}} & {\large{#3}} \\%
+	}{
+		\href{#1}{\Large\color{hlcolor}#2\hspace{5mm}} & \href{#1}{\large{#3}} \\%
+	}
 }
 
 \renewcommand{\section}[1]{
 	\par
-	\vspace{\tabcustomsep}
+	\bigskip
 	{\color{hlcolor}\rule[.35\baselineskip]{1cm}{3pt}}
-	\hspace{5mm}{\color{textcolor}\bfseries\huge #1}\hspace{5mm}
+	\hspace{5mm}{\color{section}\bfseries\huge #1}\hspace{5mm}
 	{\color{hlcolor}\rule[.35\baselineskip]{1cm}{3pt}}
 	\vspace{\tabcustomsep}
 	\par
 }
 
-\newcommand{\sidesection}[1]{
+\newcommand{\sidesection}[2]{ %\sidesection{title}{content}
 	\par
 	\vspace{\tabcustomsep}
 	{\color{hlcolor}\bfseries\huge #1}
 	\par
+	\vspace{\tabcustomsep}
+	\parbox{\linewidth}{#2}
+	\bigskip
+	\par
 }
 
-\newcommand{\cventry}[4] %\cventry{date}{title}{institution}{description}
-{
-	\begin{tabular}{@{\extracolsep{\fill}}>{\raggedleft\arraybackslash}p{\cventrydatewidth}@{\extracolsep{\tabcustomsep}}p{\cventrycontentwidth}}
-		\parbox{\cventrydatewidth}{\raggedleft#1} & \textbf{#2} \hfill {\footnotesize#3} \\
-		& \parbox{\cventrycontentwidth}{#4} \\
+\newcommand{\cventry}[5][]{ %\cventry{date}{title}{institution}{description}
+	\begin{tabular}{%
+			@{\extracolsep{\fill}}>{\raggedleft\arraybackslash}p{\cventrydatewidth}%
+			@{\extracolsep{\tabcustomsep}}p{\cventrycontentwidth}%
+		}
+		\parbox{\cventrydatewidth}{\flushright#2} & \textbf{#3} \hspace{\tabcustomsep} {\small #1} \hfill {\bfseries\color{workplace}#4} \\%
+		& \parbox{\cventrycontentwidth}{#5} \\%
 	\end{tabular}
+}
+
+\newcommand{\cvlist}[2]{
+	{\bfseries\textbullet\hspace{\tabcustomsep}#1}: #2\par
 }
